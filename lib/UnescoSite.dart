@@ -9,19 +9,20 @@ class UnescoSite {
   String httpUrl;
   String dateInscribed;
   String idNumber;
+  String danger;
 
-  UnescoSite({
-    this.category,
-    this.region,
-    this.site,
-    this.coordinates,
-    this.states,
-    this.location,
-    this.shortDescription,
-    this.httpUrl,
-    this.dateInscribed,
-    this.idNumber,
-  });
+  UnescoSite(
+      {this.category,
+      this.region,
+      this.site,
+      this.coordinates,
+      this.states,
+      this.location,
+      this.shortDescription,
+      this.httpUrl,
+      this.dateInscribed,
+      this.idNumber,
+      this.danger});
 
   UnescoSite.fromJson(Map<String, dynamic> json) {
     category = json['category'];
@@ -35,6 +36,7 @@ class UnescoSite {
     httpUrl = json['http_url'];
     dateInscribed = json['date_inscribed'];
     idNumber = json['id_number'];
+    danger = json['danger'];
   }
 
   Map<String, dynamic> toJson() {
@@ -50,6 +52,7 @@ class UnescoSite {
     data['http_url'] = this.httpUrl;
     data['date_inscribed'] = this.dateInscribed;
     data['id_number'] = this.idNumber;
+    data['danger'] = this.danger;
     return data;
   }
 }

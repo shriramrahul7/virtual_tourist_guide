@@ -29,15 +29,6 @@ class _DetailsPageState extends State<DetailsPage> {
     super.initState();
   }
 
-  _launchURL() async {
-    const url = 'https://en.wikipedia.org';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -162,9 +153,19 @@ class _DetailsPageState extends State<DetailsPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5.0),
-                    child: Text(
-                      'Date Inscribed : ${widget.unescoSite.dateInscribed}',
-                      style: TextStyle(color: Colors.yellow[800], fontSize: 18),
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(color: Colors.yellow[800])),
+                      child: Text(
+                        '''Date Inscribed : ${widget.unescoSite.dateInscribed}
+The year when this site was regonised as a World Heritage Site. ''',
+                        style:
+                            TextStyle(color: Colors.yellow[800], fontSize: 18),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                   SizedBox(
