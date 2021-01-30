@@ -1,6 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:maps_launcher/maps_launcher.dart';
+import 'package:mini_project/imageScreen.dart';
+import 'package:latlong/latlong.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'Services.dart';
@@ -33,16 +36,23 @@ class _DetailsPageState extends State<DetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           MapsLauncher.launchQuery(widget.unescoSite.site);
           // var temp = Services.getImages();
           // print('call is successfully completed.');
         },
-        child: Icon(
-          Icons.map,
-          color: Colors.black,
-        ),
+        // child: Row(
+        //   children: [
+        //     Icon(
+        //       Icons.map,
+        //       color: Colors.black,
+        //     ),
+        //     Text('View In Maps')
+        //   ],
+        // ),
+        label: Text('View Maps'),
+        icon: Icon(Icons.map),
         backgroundColor: Colors.white,
       ),
       appBar: AppBar(
@@ -62,28 +72,40 @@ class _DetailsPageState extends State<DetailsPage> {
         child: Column(
           children: [
             CarouselSlider(
-              options: CarouselOptions(height: 200.0),
+              options: CarouselOptions(
+                height: 200.0,
+                enlargeCenterPage: true,
+                autoPlay: true,
+                autoPlayCurve: Curves.fastOutSlowIn,
+              ),
               items: imageLinks.map((i) {
                 return Builder(
                   builder: (BuildContext context) {
-                    return Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.symmetric(horizontal: 5.0),
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(i),
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return ImageScreen(
+                                imageLink: i,
+                              );
+                            },
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        // margin: EdgeInsets.symmetric(horizontal: 5.0),
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(i),
+                          ),
+                          // color: Colors.amber,
+                          borderRadius: BorderRadius.all(Radius.circular(16.0)),
                         ),
-                        // color: Colors.amber,
-                        borderRadius: BorderRadius.all(Radius.circular(16.0)),
                       ),
-                      // child: Center(
-                      //   child: Text(
-                      //     // '${widget.unescoSite.category} $i',
-                      //     'lets see',
-                      //     style: TextStyle(fontSize: 16.0),
-                      //   ),
-                      // ),
                     );
                   },
                 );
@@ -124,7 +146,7 @@ class _DetailsPageState extends State<DetailsPage> {
                         )
                       : Container(),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    padding: const EdgeInsets.fromLTRB(0, 5, 0, 10),
                     child: Row(
                       children: [
                         Icon(Icons.location_on),
@@ -186,6 +208,50 @@ The year when this site was regonised as a World Heritage Site. ''',
                     widget.unescoSite.shortDescription,
                     style: TextStyle(fontSize: 18, color: Colors.white),
                     // textAlign: TextAlign.left,
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Colors.yellowAccent,
+                        borderRadius: BorderRadius.all(Radius.circular(15))),
+                    height: 400,
+                    child: FlutterMap(
+                      options: MapOptions(
+                        // center: LatLng(34.388,
+                        //     47.436),
+                        center: LatLng(widget.unescoSite.coordinates[0],
+                            widget.unescoSite.coordinates[1]),
+                        minZoom: 5.0,
+                      ),
+                      layers: [
+                        new TileLayerOptions(
+                            urlTemplate:
+                                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                            subdomains: ['a', 'b', 'c']),
+                        MarkerLayerOptions(markers: [
+                          Marker(
+                            width: 45.0,
+                            height: 45.0,
+                            // point: LatLng( 34.388,
+                            //47.436),
+                            point: new LatLng(widget.unescoSite.coordinates[0],
+                                widget.unescoSite.coordinates[1]),
+                            builder: (context) => Container(
+                              child: IconButton(
+                                color: Colors.red[900],
+                                icon: Icon(Icons.location_on),
+                                iconSize: 50.0,
+                                onPressed: () {
+                                  print('marker tapped');
+                                },
+                              ),
+                            ),
+                          ),
+                        ]),
+                      ],
+                    ),
                   ),
                 ],
               ),

@@ -37,6 +37,22 @@ class _HomeScreenState extends State<HomeScreen> {
       //   centerTitle: true,
       //   elevation: 0,
       // ),
+      drawer: Drawer(
+        child: SafeArea(
+          child: Column(
+            children: [
+              ListTile(
+                leading: Icon(Icons.info),
+                title: Text(
+                  'About App',
+                  style: TextStyle(fontSize: 16),
+                ),
+                onTap: () {},
+              ),
+            ],
+          ),
+        ),
+      ),
       backgroundColor: Colors.black,
       body: CustomScrollView(
         slivers: <Widget>[
