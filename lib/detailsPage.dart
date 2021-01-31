@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:maps_launcher/maps_launcher.dart';
@@ -39,20 +40,12 @@ class _DetailsPageState extends State<DetailsPage> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           MapsLauncher.launchQuery(widget.unescoSite.site);
-          // var temp = Services.getImages();
-          // print('call is successfully completed.');
         },
-        // child: Row(
-        //   children: [
-        //     Icon(
-        //       Icons.map,
-        //       color: Colors.black,
-        //     ),
-        //     Text('View In Maps')
-        //   ],
-        // ),
-        label: Text('View Maps'),
-        icon: Icon(Icons.map),
+        label: Text(
+          'View Maps',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
+        icon: Icon(Icons.map, color: Colors.black),
         backgroundColor: Colors.white,
       ),
       appBar: AppBar(
@@ -71,46 +64,62 @@ class _DetailsPageState extends State<DetailsPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CarouselSlider(
-              options: CarouselOptions(
-                height: 200.0,
-                enlargeCenterPage: true,
-                autoPlay: true,
-                autoPlayCurve: Curves.fastOutSlowIn,
-              ),
-              items: imageLinks.map((i) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return ImageScreen(
-                                imageLink: i,
+            imageLinks == null
+                ? Container()
+                : CarouselSlider(
+                    options: CarouselOptions(
+                      height: 200.0,
+                      enlargeCenterPage: true,
+                      autoPlay: true,
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                    ),
+                    items: imageLinks.map((i) {
+                      return Builder(
+                        builder: (BuildContext context) {
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                CupertinoPageRoute(
+                                  builder: (context) {
+                                    return ImageScreen(
+                                      imageLink: i,
+                                    );
+                                  },
+                                ),
                               );
                             },
-                          ),
-                        );
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        // margin: EdgeInsets.symmetric(horizontal: 5.0),
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: NetworkImage(i),
-                          ),
-                          // color: Colors.amber,
-                          borderRadius: BorderRadius.all(Radius.circular(16.0)),
-                        ),
-                      ),
-                    );
-                  },
-                );
-              }).toList(),
-            ),
+                            // child: Container(
+                            // width: MediaQuery.of(context).size.width,
+                            // margin: EdgeInsets.symmetric(horizontal: 5.0),
+                            // decoration: BoxDecoration(
+                            //   // image: DecorationImage(
+
+                            //   // fit: BoxFit.cover,
+                            //   // image: FadeInImage(image: ,),
+                            //   // image: NetworkImage(i),
+                            //   // ),
+                            //   // color: Colors.amber,
+                            //   borderRadius:
+                            //       BorderRadius.all(Radius.circular(16.0)),
+                            // ),
+                            child: ClipRRect(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(16.0)),
+                              child: FittedBox(
+                                fit: BoxFit.cover,
+                                child: FadeInImage.assetNetwork(
+                                  placeholder: 'assets/Earth-unscreen.gif',
+                                  image: i,
+                                ),
+                              ),
+                            ),
+                            // ),
+                          );
+                        },
+                      );
+                    }).toList(),
+                  ),
             SizedBox(
               height: 10,
             ),
@@ -141,7 +150,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           padding: const EdgeInsets.symmetric(vertical: 5.0),
                           child: Text(
                             widget.unescoSite.location,
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: 16, color: Colors.white),
                           ),
                         )
                       : Container(),
@@ -149,7 +158,10 @@ class _DetailsPageState extends State<DetailsPage> {
                     padding: const EdgeInsets.fromLTRB(0, 5, 0, 10),
                     child: Row(
                       children: [
-                        Icon(Icons.location_on),
+                        Icon(
+                          Icons.location_on,
+                          color: Colors.white,
+                        ),
                         SizedBox(
                           width: 5,
                         ),

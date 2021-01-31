@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:lottie/lottie.dart';
 
 import 'homeScreen.dart';
 
@@ -15,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Virtual Tourist Guide',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
+      theme: ThemeData(fontFamily: 'GoogleSans'),
       home: BackButton(),
     );
   }
@@ -32,26 +35,67 @@ class _BackButtonState extends State<BackButton> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: onWillPop,
-      child: HomeScreen(),
+      child: SplashScreen(),
+      // child: ,
     );
   }
 
   Future<bool> onWillPop() async {
     DateTime currentTime = DateTime.now();
 
-    //bifbackbuttonhasnotbeenpreedOrToasthasbeenclosed
-    //Statement 1 Or statement2
     bool backButton = backbuttonpressedTime == null ||
         currentTime.difference(backbuttonpressedTime) > Duration(seconds: 3);
 
     if (backButton) {
       backbuttonpressedTime = currentTime;
       Fluttertoast.showToast(
-          msg: "Double Click to exit app",
+          msg: "Double Click to exit",
           backgroundColor: Colors.black,
           textColor: Colors.white);
       return false;
     }
     return true;
+  }
+}
+
+class SplashScreen extends StatefulWidget {
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(
+        Duration(seconds: 3),
+        () => Navigator.pushReplacement(
+            context, CupertinoPageRoute(builder: (context) => HomeScreen())));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color(0xFFF8CB5A),
+      body: Column(
+        children: [
+          SizedBox(
+            height: 150,
+          ),
+          Lottie.asset('assets/travel2.json'),
+          Padding(
+            padding: const EdgeInsets.only(top: 50.0, left: 10, right: 10),
+            child: Text(
+              'VIRTUAL TOURIST GUIDE',
+              style: TextStyle(
+                  color: Colors.black87,
+                  fontSize: 30,
+                  fontFamily: 'GoogleSans'),
+            ),
+          )
+        ],
+        // child: Lottie.asset('assets/travel2.json'),
+      ),
+    );
   }
 }

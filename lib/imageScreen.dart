@@ -8,15 +8,22 @@ class ImageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: Colors.black87,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+      ),
       body: InteractiveViewer(
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: NetworkImage(imageLink),
-            ),
-          ),
+        child: FadeInImage.assetNetwork(
+          placeholder: 'assets/Earth-unscreen.gif',
+          image: imageLink,
         ),
+        // child: Container(
+        //   decoration: BoxDecoration(
+        //     image: DecorationImage(
+        //       image: NetworkImage(imageLink),
+        //     ),
+        //   ),
+        // ),
       ),
     );
   }

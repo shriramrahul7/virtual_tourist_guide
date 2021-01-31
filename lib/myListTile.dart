@@ -33,12 +33,17 @@ class MyTile extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(8),
               //borderRadius: BorderRadius.circular(10),
-              width: MediaQuery.of(context).size.width * 0.33,
+              // width: MediaQuery.of(context).size.width * 0.33,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  'http://whc.unesco.org/uploads/sites/site_$image.jpg',
-                  fit: BoxFit.fill,
+                child: FittedBox(
+                  fit: BoxFit.cover,
+                  child: FadeInImage.assetNetwork(
+                    placeholder: 'assets/wheel2.gif',
+                    image:
+                        'http://whc.unesco.org/uploads/sites/site_$image.jpg',
+                    // fit: BoxFit.fill,
+                  ),
                 ),
               ),
             ),
@@ -66,7 +71,10 @@ class MyTile extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 15.0,
                         fontWeight: FontWeight.bold,
-                        color: Colors.blueGrey,
+                        // color: Colors.blueGrey,
+                        color: subtitle == 'Natural'
+                            ? Colors.green
+                            : Colors.yellow[900],
                         letterSpacing: 1.5),
                   ),
                   Text(
@@ -74,7 +82,7 @@ class MyTile extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 15.0,
                       fontWeight: FontWeight.bold,
-                      color: Colors.blueGrey,
+                      color: Colors.indigo[300],
                       letterSpacing: 1.5,
                     ),
                   ),
