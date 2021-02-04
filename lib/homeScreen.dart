@@ -1,11 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mini_project/frontScreen.dart';
 
-import 'Services.dart';
+// import 'Services.dart';
 import 'UnescoSite.dart';
 import 'mySliverList.dart';
 
 class ListScreen extends StatefulWidget {
+  final List<UnescoSite> unescoSites;
+
+  const ListScreen({Key key, this.unescoSites}) : super(key: key);
   @override
   _ListScreenState createState() => _ListScreenState();
 }
@@ -18,12 +22,12 @@ class _ListScreenState extends State<ListScreen> {
 
   void initState() {
     super.initState();
-    Services.getUnescoSites().then((sites) {
-      setState(() {
-        unescoSites = sites;
-        filteredSites = unescoSites;
-      });
+    // Services.getUnescoSites().then((sites) {
+    setState(() {
+      unescoSites = widget.unescoSites;
+      filteredSites = unescoSites;
     });
+    // });
   }
 
   @override
@@ -62,9 +66,7 @@ class _ListScreenState extends State<ListScreen> {
                 IconButton(
                   icon: Icon(Icons.home),
                   onPressed: () {
-                    setState(() {
-                      filteredSites = unescoSites;
-                    });
+                    Navigator.pop(context);
                   },
                 )
               ],

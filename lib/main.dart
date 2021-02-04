@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Virtual Tourist Guide',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'GoogleSans'),
+      theme: ThemeData(fontFamily: 'GoogleSans', primaryColor: Colors.red),
       home: BackButton(),
     );
   }
