@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
 
-import 'homeScreen.dart';
 import 'frontScreen.dart';
 
 void main() {
