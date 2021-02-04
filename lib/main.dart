@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
 
 import 'homeScreen.dart';
+import 'frontScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -70,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(
         Duration(seconds: 3),
         () => Navigator.pushReplacement(
-            context, CupertinoPageRoute(builder: (context) => ListScreen())));
+            context, CupertinoPageRoute(builder: (context) => FrontScreen())));
   }
 
   @override
