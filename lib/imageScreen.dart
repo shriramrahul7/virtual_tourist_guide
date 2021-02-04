@@ -13,17 +13,19 @@ class ImageScreen extends StatelessWidget {
         backgroundColor: Colors.black,
       ),
       body: InteractiveViewer(
-        child: FadeInImage.assetNetwork(
-          placeholder: 'assets/Earth-unscreen.gif',
-          image: imageLink,
-        ),
-        // child: Container(
-        //   decoration: BoxDecoration(
-        //     image: DecorationImage(
-        //       image: NetworkImage(imageLink),
-        //     ),
-        //   ),
+        // child: FadeInImage.assetNetwork(
+        //   placeholder: 'assets/Earth-unscreen.gif',
+        //   image: imageLink,
         // ),
+        child: Center(
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(imageLink),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

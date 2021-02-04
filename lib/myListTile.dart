@@ -33,7 +33,7 @@ class MyTile extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(8),
               //borderRadius: BorderRadius.circular(10),
-              // width: MediaQuery.of(context).size.width * 0.33,
+              width: MediaQuery.of(context).size.width * 0.27,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: FittedBox(

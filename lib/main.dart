@@ -70,7 +70,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(
         Duration(seconds: 3),
         () => Navigator.pushReplacement(
-            context, CupertinoPageRoute(builder: (context) => HomeScreen())));
+            context, CupertinoPageRoute(builder: (context) => ListScreen())));
   }
 
   @override

@@ -3,21 +3,18 @@ import 'package:flutter/material.dart';
 
 import 'Services.dart';
 import 'UnescoSite.dart';
-// import 'debouncer.dart';
 import 'mySliverList.dart';
 
-class HomeScreen extends StatefulWidget {
+class ListScreen extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _ListScreenState createState() => _ListScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _ListScreenState extends State<ListScreen> {
   List<UnescoSite> unescoSites = [];
   List<UnescoSite> filteredSites = [];
   var isSearching = false;
-  // Debouncer debouncer = Debouncer(milliseconds: 500);
   final myController = TextEditingController(text: '');
-  // FocusNode myFocusNode;
 
   void initState() {
     super.initState();
@@ -61,6 +58,16 @@ class _HomeScreenState extends State<HomeScreen> {
         body: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
+              actions: [
+                IconButton(
+                  icon: Icon(Icons.home),
+                  onPressed: () {
+                    setState(() {
+                      filteredSites = unescoSites;
+                    });
+                  },
+                )
+              ],
               backgroundColor: Colors.redAccent[400],
               // backgroundColor: Colors.orangeAccent[400],
               floating: true,
@@ -80,7 +87,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: CupertinoTextField(
-                        placeholder: 'Enter the location name',
+                        controller: myController,
+                        placeholder: 'Enter the location name or country',
                         placeholderStyle: TextStyle(color: Colors.black54),
                         style: TextStyle(color: Colors.black),
                         clearButtonMode: OverlayVisibilityMode.editing,
@@ -91,17 +99,22 @@ class _HomeScreenState extends State<HomeScreen> {
                         maxLines: 1,
                         onChanged: (string) {
                           if (string == '') {
-                            isSearching = false;
-                            setState(() {});
+                            // isSearching = false;
+                            setState(() {
+                              filteredSites = unescoSites;
+                            });
                           } else {
-                            isSearching = true;
+                            // isSearching = true;
                             // debouncer.run(() {
                             setState(() {
                               filteredSites = unescoSites
                                   .where(
                                     (u) => (u.site
-                                        .toLowerCase()
-                                        .contains(string.toLowerCase())),
+                                            .toLowerCase()
+                                            .contains(string.toLowerCase()) ||
+                                        u.states
+                                            .toLowerCase()
+                                            .contains(string.toLowerCase())),
                                   )
                                   .toList();
                             });
@@ -110,12 +123,33 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                       ),
                     ),
+                    // OutlineButton(
+                    //   color: Colors.orange,
+                    //   highlightColor: Colors.green[400],
+                    //   child: Text(
+                    //     'Filter',
+                    //     style: TextStyle(color: Colors.white),
+                    //   ),
+                    //   onPressed: () {},
+                    // )
                   ],
                 ),
               ),
             ),
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  ListTile(
+                    title: Text(
+                      'Number of Sites : ${filteredSites.length}',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             SliverPadding(
-              padding: EdgeInsets.symmetric(vertical: 5),
+              padding: EdgeInsets.symmetric(vertical: 0),
               sliver: MySliverList(filteredSites: filteredSites),
             ),
           ],
