@@ -4,12 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
-// class FrontScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container();
-//   }
-// }
 class FrontScreen extends StatefulWidget {
   @override
   _FrontScreenState createState() => _FrontScreenState();
