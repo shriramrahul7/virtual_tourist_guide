@@ -52,13 +52,24 @@ class _DetailsPageState extends State<DetailsPage> {
         elevation: 0,
         backgroundColor: Colors.black,
         actions: [
-          IconButton(
-            // icon: Icon(MyFlutterApp.travel_explore_black_18dp),
-            icon: Icon(Icons.explore),
+          // IconButton(
+          //   // icon: Icon(MyFlutterApp.travel_explore_black_18dp),
+          //   icon: Icon(Icons.explore),
+          //   onPressed: () async {
+          //     await launch(widget.unescoSite.httpUrl);
+          //   },
+          // ),
+          OutlineButton.icon(
+            textColor: Colors.white,
             onPressed: () async {
               await launch(widget.unescoSite.httpUrl);
             },
-          ),
+            icon: Icon(Icons.explore, size: 24),
+            label: Text(
+              "More Info",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+          )
         ],
       ),
       body: SingleChildScrollView(

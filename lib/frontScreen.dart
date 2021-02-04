@@ -53,6 +53,22 @@ class _FrontScreenState extends State<FrontScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
+      drawer: Drawer(
+        child: SafeArea(
+          child: Column(
+            children: [
+              ListTile(
+                leading: Icon(Icons.info),
+                title: Text(
+                  'About App',
+                  style: TextStyle(fontSize: 16),
+                ),
+                onTap: () {},
+              ),
+            ],
+          ),
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.redAccent[400],
         elevation: 0,

@@ -42,34 +42,18 @@ class _ListScreenState extends State<ListScreen> {
         }
       },
       child: Scaffold(
-        drawer: Drawer(
-          child: SafeArea(
-            child: Column(
-              children: [
-                ListTile(
-                  leading: Icon(Icons.info),
-                  title: Text(
-                    'About App',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  onTap: () {},
-                ),
-              ],
-            ),
-          ),
-        ),
         backgroundColor: Colors.black54,
         body: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
-              actions: [
-                IconButton(
-                  icon: Icon(Icons.home),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                )
-              ],
+              // actions: [
+              //   IconButton(
+              //     icon: Icon(Icons.home),
+              //     onPressed: () {
+              //       Navigator.pop(context);
+              //     },
+              //   )
+              // ],
               backgroundColor: Colors.redAccent[400],
               // backgroundColor: Colors.orangeAccent[400],
               floating: true,
