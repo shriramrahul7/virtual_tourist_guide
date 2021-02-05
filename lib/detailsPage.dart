@@ -62,7 +62,7 @@ class _DetailsPageState extends State<DetailsPage> {
           OutlineButton.icon(
             textColor: Colors.white,
             onPressed: () async {
-              await launch(widget.unescoSite.httpUrl);
+              await launch(widget.unescoSite.httpUrl, forceWebView: true);
             },
             icon: Icon(Icons.explore, size: 24),
             label: Text(

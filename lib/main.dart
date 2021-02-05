@@ -76,7 +76,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF8CB5A),
+      backgroundColor: Colors.blueGrey[900],
+      // backgroundColor: Color(0xFFF8CB5A),
       body: Column(
         children: [
           SizedBox(
@@ -87,10 +88,13 @@ class _SplashScreenState extends State<SplashScreen> {
             padding: const EdgeInsets.only(top: 50.0, left: 10, right: 10),
             child: Text(
               'VIRTUAL TOURIST GUIDE',
+              textAlign: TextAlign.center,
               style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 30,
-                  fontFamily: 'GoogleSans'),
+                color: Colors.white,
+                fontSize: 30,
+                fontFamily: 'GoogleSans',
+                fontWeight: FontWeight.bold,
+              ),
             ),
           )
         ],
