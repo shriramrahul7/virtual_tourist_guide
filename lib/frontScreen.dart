@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mini_project/aboutDev.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'Services.dart';
@@ -281,19 +282,27 @@ Digitally''',
                     color: Colors.grey[300],
                   ),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    CupertinoPageRoute(builder: (context) {
+                      return AboutDev();
+                    }),
+                  );
+                },
               ),
             ],
           ),
         ),
       ),
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.black,
         // backgroundColor: Colors.redAccent[400],
         elevation: 0,
         title: Text(
           'Virtual Tourist Guide',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 24, letterSpacing: 1),
         ),
         centerTitle: true,
       ),
@@ -310,10 +319,11 @@ Digitally''',
         },
         label: Text(
           'All Sites',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        icon: Icon(Icons.location_city, color: Colors.black),
-        backgroundColor: Colors.white,
+        icon: Icon(Icons.location_city, color: Colors.white),
+        backgroundColor: Colors.teal[700],
+        // foregroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -355,35 +365,48 @@ Digitally''',
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: articlesList.length,
                       itemBuilder: (context, index) {
-                        return ExpansionTile(
-                          title: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: Text(
-                              articlesList[index].headline,
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                          backgroundColor: Colors.grey[900],
-                          childrenPadding: EdgeInsets.symmetric(horizontal: 20),
-                          children: [
-                            Text(
-                              articlesList[index].subheadline,
-                              style: TextStyle(color: Colors.grey),
-                            ),
-                            IconButton(
-                              splashRadius: 5,
-                              splashColor: Colors.redAccent,
-                              onPressed: () async {
-                                await launch(articlesList[index].articleLink,
-                                    forceWebView: true);
-                              },
-                              icon: Icon(
-                                Icons.open_in_new,
-                                size: 20,
-                                color: Colors.white,
+                        return Theme(
+                          data: ThemeData.dark(),
+                          child: ExpansionTile(
+                            title: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
+                              child: Text(
+                                articlesList[index].headline,
+                                style: TextStyle(color: Colors.white),
                               ),
                             ),
-                          ],
+                            backgroundColor: Colors.grey[900],
+                            childrenPadding:
+                                EdgeInsets.symmetric(horizontal: 20),
+                            children: [
+                              Text(
+                                articlesList[index].subheadline,
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                              OutlineButton.icon(
+                                shape: new RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                textColor: Colors.white,
+                                onPressed: () async {
+                                  await launch(articlesList[index].articleLink,
+                                      forceWebView: true);
+                                },
+                                icon: Icon(
+                                  Icons.open_in_new,
+                                  size: 20,
+                                  color: Colors.white,
+                                ),
+                                label: Text(
+                                  "Open Link",
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal),
+                                ),
+                              )
+                            ],
+                          ),
                         );
                       },
                     ),

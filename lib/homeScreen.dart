@@ -40,7 +40,7 @@ class _ListScreenState extends State<ListScreen> {
         }
       },
       child: Scaffold(
-        backgroundColor: Colors.black54,
+        backgroundColor: Colors.black38,
         body: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
@@ -52,12 +52,14 @@ class _ListScreenState extends State<ListScreen> {
               //     },
               //   )
               // ],
-              backgroundColor: Colors.redAccent[400],
+              backgroundColor: Colors.teal[700],
+              elevation: 10,
               // backgroundColor: Colors.orangeAccent[400],
               floating: true,
               pinned: true,
               centerTitle: true,
-              title: Text('Explore the World'),
+              title: Text('Explore the World',
+              style: TextStyle(fontWeight: FontWeight.bold),),
               // pinned: true,
               expandedHeight: 105,
               flexibleSpace: FlexibleSpaceBar(
