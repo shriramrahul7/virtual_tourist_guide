@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mini_project/aboutDev.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'colorTheme.dart';
 import 'Services.dart';
 import 'UnescoSite.dart';
 import 'aboutApp.dart';
@@ -296,7 +296,7 @@ Digitally''',
         ),
       ),
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: ColorTheme().kThemeColor,
         // backgroundColor: Colors.redAccent[400],
         elevation: 0,
         title: Text(
