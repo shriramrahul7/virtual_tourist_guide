@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutApp extends StatelessWidget {
@@ -26,7 +27,8 @@ class AboutApp extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              // padding: const EdgeInsets.only(left: 20.0, right: 20, top: 20),
+              padding: EdgeInsets.all(20),
               child: RichText(
                 text: TextSpan(
                     text:
@@ -39,7 +41,7 @@ class AboutApp extends StatelessWidget {
                       TextSpan(
                         text: 'UNESCO',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.blue[600],
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           decoration: TextDecoration.underline,
@@ -50,6 +52,12 @@ class AboutApp extends StatelessWidget {
                                 forceWebView: true);
                           },
                       ),
+                      // WidgetSpan(
+                      //   child: Padding(
+                      //     padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                      //     child: Icon(Icons.airport_shuttle),
+                      //   ),
+                      // ),
                       TextSpan(
                         text:
                             ' as World Heritage Sites. These sites are categorized into ',
@@ -86,21 +94,28 @@ class AboutApp extends StatelessWidget {
               ),
             ),
             OutlineButton.icon(
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
               // highlightColor: Colors.purple,
               shape: new RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
+                // borderRadius: BorderRadius.only(
+                //   bottomLeft: Radius.circular(10),
+                //   bottomRight: Radius.circular(10),
+                //   topLeft: Radius.zero,
+                // ),
+                borderRadius: BorderRadius.circular(10),
               ),
               borderSide: BorderSide(
                 color: Colors.purpleAccent,
+                // color: Colors.grey,
               ),
               textColor: Colors.purpleAccent,
               onPressed: () async {
                 await launch('https://github.com/shriramrahul7/mini_project',
                     forceWebView: true);
               },
-              icon: Icon(Icons.open_in_new, size: 24),
+              icon: Icon(FontAwesomeIcons.github, size: 24),
               label: Text(
-                "GITHUB",
+                "GITHUB REPO",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
             ),
@@ -130,6 +145,9 @@ In November 1972 the United Nations Educational, Scientific and Cultural Organiz
                 ),
               ),
             ),
+            SizedBox(
+              height: 15,
+            )
           ],
         ),
       ),
