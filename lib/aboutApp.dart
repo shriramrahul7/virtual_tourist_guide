@@ -5,7 +5,6 @@ import 'package:url_launcher/url_launcher.dart';
 class AboutApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
