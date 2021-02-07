@@ -31,7 +31,7 @@ class FrontScreenSlider extends StatelessWidget {
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 22.0,
+                fontSize: 20.0,
                 letterSpacing: 2.0,
               ),
             ),
