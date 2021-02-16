@@ -30,8 +30,19 @@ class AboutDev extends StatelessWidget {
               height: 20,
             ),
             DevCard(
+              name: 'P Shriram Rahul',
+              designation: 'UI Development, Image Search API',
+              githubLink: 'https://github.com/shriramrahul7',
+              imageUrl: 'assets/GrandCanyon.jpg',
+              instaLink: 'https://www.instagram.com/shriramrahul/',
+              mailId:
+                  'mailto:shriramrahul.pingali7@gmail.com?subject=Liked%20your%20app!',
+            ),
+            SizedBox(height: 20),
+            DevCard(
               name: 'M Satyagovind',
-              designation: 'Frontend Developer',
+              designation: 'UI Development, Search Optimization',
+              imageUrl: 'assets/Himejicastle.jpg',
               githubLink: 'https://github.com/Satyagovind',
               instaLink: 'https://www.instagram.com/satyagovind_raja7/',
               mailId:
@@ -39,21 +50,16 @@ class AboutDev extends StatelessWidget {
             ),
             SizedBox(height: 20),
             DevCard(
-              name: 'P. Shriram Rahul',
-              designation: 'Frontend Developer',
-              githubLink: 'https://github.com/shriramrahul7',
-              instaLink: 'https://www.instagram.com/shriramrahul/',
-              mailId:
-                  'mailto:shriramrahul.pingali7@gmail.com?subject=Liked%20your%20app!',
-            ),
-            SizedBox(height: 20),
-            DevCard(
               name: 'Y Rakesh Reddy',
-              designation: 'Frontend Developer',
+              designation: 'Data aggregation and API reference',
               githubLink: 'https://github.com/Rakesh0710',
               instaLink: 'https://www.instagram.com/rakeshaj_67/',
+              imageUrl: 'assets/dolamites.jpg',
               mailId:
                   'mailto:rakeshyeduru@gmail.com?subject=Liked%20your%20app!',
+            ),
+            SizedBox(
+              height: 25,
             ),
           ],
         ),
@@ -192,7 +198,8 @@ class _DevCardState extends State<DevCard> {
                   alignment: Alignment.bottomRight,
                 ),
                 radius: 60.0,
-                backgroundImage: AssetImage('assets/dolamites.jpg'),
+                backgroundImage: AssetImage(widget.imageUrl),
+                // backgroundImage: AssetImage('assets/dolamites.jpg'),
               ),
             ),
           ),

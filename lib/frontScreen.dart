@@ -130,7 +130,7 @@ class _FrontScreenState extends State<FrontScreen> {
           'A Swiss explorer called Johann Ludwig Burckhardt discovered Petra in 1812. Because it was an unknown metropolitan for around 5 centuries, it is also called the ‘Lost City’.',
     ),
     FrontSites(
-      name: 'Christ The Redemeer',
+      name: 'Christ The Redeemer',
       location: 'Brazil',
       imageUrl: 'assets/christredemeer.jpg',
       idNumber: '1100',
@@ -302,9 +302,25 @@ Digitally''',
         title: Text(
           'Virtual Tourist Guide',
           style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 24, letterSpacing: 1),
+              fontWeight: FontWeight.bold, fontSize: 20, letterSpacing: 1),
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) => ListScreen(
+                    unescoSites: unescoSites,
+                    enableAutofocus: true,
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
@@ -333,7 +349,7 @@ Digitally''',
               child: FrontScreenSlider(
                 editorsSites: editorsSites,
                 unescoSites: unescoSites,
-                title: 'Editor\'s Pics:',
+                title: 'Editor\'s Picks:',
               ),
             ),
             Container(

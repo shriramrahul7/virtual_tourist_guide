@@ -6,8 +6,10 @@ import 'mySliverList.dart';
 
 class ListScreen extends StatefulWidget {
   final List<UnescoSite> unescoSites;
+  final bool enableAutofocus;
 
-  const ListScreen({Key key, this.unescoSites}) : super(key: key);
+  const ListScreen({Key key, this.unescoSites, this.enableAutofocus})
+      : super(key: key);
   @override
   _ListScreenState createState() => _ListScreenState();
 }
@@ -58,8 +60,10 @@ class _ListScreenState extends State<ListScreen> {
               floating: true,
               pinned: true,
               centerTitle: true,
-              title: Text('Explore the World',
-              style: TextStyle(fontWeight: FontWeight.bold),),
+              title: Text(
+                'Explore the World',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               // pinned: true,
               expandedHeight: 105,
               flexibleSpace: FlexibleSpaceBar(
@@ -73,6 +77,7 @@ class _ListScreenState extends State<ListScreen> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: CupertinoTextField(
+                        autofocus: widget.enableAutofocus ?? false,
                         controller: myController,
                         placeholder: 'Enter the location name or country',
                         placeholderStyle: TextStyle(color: Colors.black54),

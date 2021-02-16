@@ -206,7 +206,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           border: Border.all(color: Colors.yellow[800])),
                       child: Text(
                         '''Date Inscribed : ${widget.unescoSite.dateInscribed}
-The year when this site was recgonised as a World Heritage Site. 
+The year when this site was recognised as a World Heritage Site. 
 
 UNESCO Site ID Number : ${widget.unescoSite.idNumber}''',
                         style:
@@ -277,6 +277,9 @@ UNESCO Site ID Number : ${widget.unescoSite.idNumber}''',
                         ]),
                       ],
                     ),
+                  ),
+                  SizedBox(
+                    height: 55,
                   ),
                 ],
               ),
