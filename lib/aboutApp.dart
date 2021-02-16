@@ -41,8 +41,8 @@ class AboutApp extends StatelessWidget {
                       TextSpan(
                         text: 'UNESCO',
                         style: TextStyle(
-                          color: Colors.blue[600],
-                          fontSize: 20,
+                          color: Colors.blue[300],
+                          fontSize: 25,
                           fontWeight: FontWeight.bold,
                           decoration: TextDecoration.underline,
                         ),
@@ -60,7 +60,7 @@ class AboutApp extends StatelessWidget {
                       // ),
                       TextSpan(
                         text:
-                            ' as World Heritage Sites. These sites are categorized into ',
+                            '🌐 as World Heritage Sites. These sites are categorized into ',
                       ),
                       TextSpan(
                         text: 'Cultural, ',
